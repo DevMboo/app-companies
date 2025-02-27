@@ -6,6 +6,8 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->group('api', static function ($routes) {
+    $routes->post('login', 'Api\AuthController::login');
+
     $routes->group('clients', static function ($routes) {
         $routes->get('', 'Api\ClientsController::index', ['as' => 'clients']);
         $routes->get('show/(:num)', 'Api\ClientsController::show/$1', ['as' => 'clients.show']);
@@ -14,7 +16,7 @@ $routes->group('api', static function ($routes) {
         $routes->delete('delete/(:num)', 'Api\ClientsController::delete/$1', ['as' => 'clients.delete']);
     });
 
-    $routes->group('products', static function ($routes) {
+    $routes->group('products', ['filter' => 'auth'], static function ($routes) {
         $routes->get('', 'Api\ProductsController::index', ['as' => 'products']);
         $routes->get('show/(:num)', 'Api\ProductsController::show/$1', ['as' => 'products.show']);
         $routes->post('save', 'Api\ProductsController::create', ['as' => 'products.save']);
