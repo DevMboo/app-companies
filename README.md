@@ -1,68 +1,150 @@
-# CodeIgniter 4 Application Starter
+# CodeIgniter 4 API Companies L5 Network
 
-## What is CodeIgniter?
+## README - Português
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+### 📌 Requisitos
+- PHP 8.0 ou superior
+- Composer
+- Banco de Dados (MySQL, PostgreSQL, etc.)
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+### 🚀 Configuração do Projeto
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/DevMboo/app-companies
+   cd app-companies
+   ```
+2. **Instale as dependências via Composer:**
+   ```bash
+   composer install
+   ```
+3. **Configuração do ambiente:**
+   - Copie o arquivo de configuração padrão:
+     ```bash
+     cp env .env
+     ```
+   - Edite o arquivo `.env` e configure as credenciais do banco de dados:
+     ```ini
+     database.default.hostname = localhost
+     database.default.database = app_comp_db
+     database.default.username = usuario
+     database.default.password = senha
+     database.default.DBDriver = MySQL # Ou outro driver
+     ```
+4. **Execute as migrations para criar as tabelas:**
+   ```bash
+   php spark migrate
+   ```
+5. **Inicie o servidor:**
+   ```bash
+   php spark serve
+   ```
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+### 🔐 Autenticação JWT
+- Para acessar algumas rotas, é necessário um token JWT.
+- Faça login para obter um token:
+  ```bash
+  POST /api/login
+  ```
+- Use o token no header `Authorization` para acessar endpoints protegidos:
+  ```bash
+  Authorization: Bearer SEU_TOKEN
+  ```
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+### 📌 Rotas da API
+#### 🧑 Clientes
+- `GET /api/clients` → Lista todos os clientes
+- `GET /api/clients/show/{id}` → Exibe um cliente específico
+- `POST /api/clients/save` → Cria um cliente
+- `PUT /api/clients/update/{id}` → Atualiza um cliente
+- `DELETE /api/clients/delete/{id}` → Deleta um cliente
 
-## Installation & updates
+#### 📦 Produtos (Requer autenticação JWT)
+- `GET /api/products` → Lista todos os produtos
+- `GET /api/products/show/{id}` → Exibe um produto específico
+- `POST /api/products/save` → Cria um produto
+- `PUT /api/products/update/{id}` → Atualiza um produto
+- `DELETE /api/products/delete/{id}` → Deleta um produto
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+#### 📦 Pedidos
+- `GET /api/orders` → Lista todos os pedidos
+- `GET /api/orders/show/{id}` → Exibe um pedido específico
+- `POST /api/orders/save` → Cria um pedido
+- `PUT /api/orders/update/{id}` → Atualiza um pedido
+- `DELETE /api/orders/delete/{id}` → Deleta um pedido
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+---
 
-## Setup
+# CodeIgniter 4 API Companies L5 Network
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+## README - English
 
-## Important Change with index.php
+### 📌 Requirements
+- PHP 8.0 or higher
+- Composer
+- Database (MySQL, PostgreSQL, etc.)
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+### 🚀 Project Setup
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/DevMboo/app-companies
+   cd app-companies
+   ```
+2. **Install dependencies via Composer:**
+   ```bash
+   composer install
+   ```
+3. **Environment configuration:**
+   - Copy the default environment file:
+     ```bash
+     cp env .env
+     ```
+   - Edit `.env` and configure database credentials:
+     ```ini
+     database.default.hostname = localhost
+     database.default.database = app_comp_db
+     database.default.username = user
+     database.default.password = password
+     database.default.DBDriver = MySQL # Or another driver
+     ```
+4. **Run migrations to create tables:**
+   ```bash
+   php spark migrate
+   ```
+5. **Start the server:**
+   ```bash
+   php spark serve
+   ```
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### 🔐 JWT Authentication
+- To access some routes, a JWT token is required.
+- Login to get a token:
+  ```bash
+  POST /api/login
+  ```
+- Use the token in the `Authorization` header to access protected endpoints:
+  ```bash
+  Authorization: Bearer YOUR_TOKEN
+  ```
 
-**Please** read the user guide for a better explanation of how CI4 works!
+### 📌 API Routes
+#### 🧑 Clients
+- `GET /api/clients` → List all clients
+- `GET /api/clients/show/{id}` → Show a specific client
+- `POST /api/clients/save` → Create a client
+- `PUT /api/clients/update/{id}` → Update a client
+- `DELETE /api/clients/delete/{id}` → Delete a client
 
-## Repository Management
+#### 📦 Products (Requires JWT Authentication)
+- `GET /api/products` → List all products
+- `GET /api/products/show/{id}` → Show a specific product
+- `POST /api/products/save` → Create a product
+- `PUT /api/products/update/{id}` → Update a product
+- `DELETE /api/products/delete/{id}` → Delete a product
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+#### 📦 Orders
+- `GET /api/orders` → List all orders
+- `GET /api/orders/show/{id}` → Show a specific order
+- `POST /api/orders/save` → Create an order
+- `PUT /api/orders/update/{id}` → Update an order
+- `DELETE /api/orders/delete/{id}` → Delete an order
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Server Requirements
-
-PHP version 8.1 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
